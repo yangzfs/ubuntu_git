@@ -1,0 +1,26 @@
+#！/bin/bash
+
+### BEGIN INIT INFO 
+# Provides: 
+# Required-Start: 
+# Required-Stop: 
+# Default-Start: 2 3 4 5 
+# Default-Stop:  0 1 6 
+# Short-Description: 
+# Description: 
+### END INIT INFO
+
+case "$1" in
+	start)
+		#开机执行的逻辑
+		;;
+	stop)
+		cd /home/zwz/桌面/ubuntu_git
+		git add .
+		git comment -m "auto"
+		git push
+		#关机执行的逻辑
+		;;
+	*)
+		;;
+esac
