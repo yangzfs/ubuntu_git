@@ -1,5 +1,5 @@
 #include<stdio.h>
 int main(int argc, char const *argv[]) {
-  printf("This is lab1\n");
+  printf("This is a test\n");
   return 0;
 }

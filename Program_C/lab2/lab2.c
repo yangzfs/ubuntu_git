@@ -1,5 +1,5 @@
 #include<stdio.h>
 int main(int argc, char const *argv[]) {
-  printf("there is a error\n");
+  printf("no error\n");
   return 0;
 }
