@@ -27,8 +27,10 @@ int main(int argc, char const *argv[]) {
     printf("-R copy ");
     printf("from: %s\n",buf);
   }else
+  {
     printf("ERROR:too much command!\n");
-
+    exit(0);
+  }
   if ( (currentdir = opendir(buf)) == NULL)// 打开目录
   {
     printf("ERROR:open directory fail\n");

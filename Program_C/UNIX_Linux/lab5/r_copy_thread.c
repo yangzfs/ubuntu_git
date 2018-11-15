@@ -12,7 +12,23 @@ int main(int argc, char const *argv[]) {
   pthread_t ls_tid;
   char *buf = NULL;
 
-  buf = getcwd(NULL,0);
+  if (argv[1] == NULL)// 获取当前工作目录路径
+  {
+    if ( (buf = getcwd(NULL,0)) != NULL){
+      printf("copy ");
+      printf("from:  %s\n",buf);
+    }
+  }else if (argv[2] == NULL)
+  {
+    buf = (char *)malloc(strlen(argv[1])+1);
+    strcpy(buf, argv[1]);
+    printf("parameter copy ");
+    printf("from: %s\n",buf);
+  }else
+  {
+    printf("ERROR:too much command!\n");
+    exit(0);
+  }
 
   pthread_create(&ls_tid, NULL, myls, buf);
   pthread_join(ls_tid,NULL);
