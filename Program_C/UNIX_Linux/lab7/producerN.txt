@@ -1,0 +1,118 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+enum yyTokenType{ INT = 258, STR, RETURN, WHILE, VOID, IF, ELSE, PRINT, INTEGER
+,FLOAT, STRING, IDENTIFIER, BOOL, SYMBOL, CHAR};
+
+const char * test_path = "/home/zwz/windows/Users/12454/Desktop/linux/编译技术lab2/test.c";
+
+typedef struct _ast
+{
+    int ivalue;
+    char svalue[100];//可能需要修改
+    char* nodeType;
+    struct _ast* left;
+    struct _ast* mid;//可能需要修改
+    struct _ast* right;
+}ast, *past;
+
+extern int yylex();
+extern int yylval;
+extern char* yytext;
+extern FILE* yyin;
+
+#define SYMBOL_EQUALS              \
+token==SYMBOL&&yytext[0]==
+
+
+void advance();
+
+past newAstNode();
+past newINTEGER(int value);
+past newSTRING(char* value);
+past newIDENTIFIER(char* value);
+past newINT();
+past newSTR();
+past newVOID();
+past newIF(past left , past right);
+past newWHILE(past left ,past right);
+past newRETURN(past left);
+past newPRINT(past left);
+past newELSE(past left);
+past newCMP(past left ,past right);
+past newBOOL(past left ,past right);
+past newList(past left ,past right);
+past newExpr(int oper, past left,past right);
+past newExtDecl(past t,past d,past ds);
+past node_id_list();
+past node_primary_expr();
+past node_expr_list();
+past node_mul_expr();
+past node_add_expr();
+past node_cmp_expr();
+past node_expr();
+past node_expression_statement();
+past node_statement_list();
+past node_statement();
+past node_type();
+past node_parameter();
+past node_parameter_list();
+past node_declarator();
+past node_initializer();
+past node_intstr_list();
+past node_declarator_list();
+past node_decl_or_stmt();
+past node_external_declaration();
+past node_program();
+void showAst(past node, int nest);
+
+int token;
+
+int main(int argc, const char * argv[])
+{
+    // past rp = NULL;
+    //
+    // setbuf(stdout, NULL);
+    // yyin = fopen(test_path, "r");
+    // // advance();
+    // // program();
+    // // printf("PASS！\n");
+    // rp = node_program();
+    // printf("\n\n");
+    // showAst(rp, 0);
+    past a = NULL;
+    while(1){
+        printf("Please input expression!");
+        a = node_program();
+        showAst(a, 0);
+    }
+    printf("PASS！\n");
+
+    return 0;
+}
+
+void advance()
+{
+  token = yylex();
+  printf("\n<%d, %s>", token, yytext);
+}
+
+past newAstNode()
+{
+  past node =(past) malloc(sizeof(ast));
+  if (node == NULL)
+  {
+    printf("ERROR: newAstNode");
+    exit(0);
+  }
+  memset(node, 0, sizeof(ast));
+  return node;
+}
+past newINTEGER(int value)
+{
+  past var = newAstNode();
+  var -> nodeType = "INTEGER";
+  var -> ivalue = value;
+  return var;
+}
