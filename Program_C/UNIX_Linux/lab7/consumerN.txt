@@ -39,7 +39,15 @@ past newExpr(int oper, past left,past right);
 past newExtDecl(past t,past d,past ds);
 past node_id_list();
 past node_primary_expr();
-past node_expr_list();
+  \
+token==SYMBOL&&yytext[0]==
+
+
+void advance();
+
+past newAstNode();
+past newINTEGER(int value);
+paspast node_expr_list();
 past node_mul_expr();
 past node_add_expr();
 past node_cmp_expr();
@@ -51,30 +59,22 @@ past node_type();
 past node_parameter();
 past node_parameter_list();
 past node_declarator();
-past node_initializer();
-past node_intstr_list();
-past node_declarator_list();
-past node_decl_or_stmt();
-past node_external_declaration();
+past node_initiexternal_declaration();
 past node_program();
 void showAst(past node, int nest);
 
 int token;
 
-int mai  \
-token==SYMBOL&&yytext[0]==
-
-
-void advance();
-
-past newAstNode();
-past newINTEGER(int value);
-pasn(int argc, const char * argv[])
+int main(int argc, const char * argv[])
 {
     // past rp = NULL;
     //
     // setbuf(stdout, NULL);
-    // yyin = fopen(test_path, "r");
+    //alizer();
+past node_intstr_list();
+past node_declarator_list();
+past node_decl_or_stmt();
+past node_ yyin = fopen(test_path, "r");
     // // advance();
     // // program();
     // // printf("PASS！\n");
@@ -85,17 +85,7 @@ pasn(int argc, const char * argv[])
     while(1){
         printf("Please input expression!");
         a = node_program();
-        showAst(a, 0);
-    }
-    printf("PASS！\n");
-
-    return 0;
-}
-
-void advance()
-{
-  token = yylex();
-  printf("\n<%d, %s>", token, yytext);
+        showAst(a"\n<%d, %s>", token, yytext);
 }
 
 past newAstNode()
@@ -112,4 +102,14 @@ past newAstNode()
 past newINTEGER(int value)
 {
   past var = newAstNode();
-  var -> nodeType = "INTEGE
+  var -> nodeType = "INTEGE, 0);
+    }
+    printf("PASS！\n");
+
+    return 0;
+}
+
+void advance()
+{
+  token = yylex();
+  printf(

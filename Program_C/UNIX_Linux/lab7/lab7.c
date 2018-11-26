@@ -216,7 +216,7 @@ void consumer(void)
     {
       if (bufp->Index[i] == 1)
       {
-        show_buf(bufp);//test
+        //show_buf(bufp);//test
         strncpy(buf, bufp->Buffer[i], BUFFER_SIZE);
         bufp->Index[i] = 0;
         break;
