@@ -10,13 +10,20 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 
 
 int main(int argc, char const *argv[])
 {
-  key_t mykey = (key_t)1234;
-  printf("%d", (int)(0x5102000d));
+  char * p;
+  char s[] = "test";
+  p = (char *)malloc(sizeof (s));
+  strcpy(p, s);
+  printf("%s", p);
+  
+  // key_t mykey = (key_t)1234;
+  // printf("%d", (int)(0x5102000d));
   // pid_t pid1, pid2;
   //
   // int shmid = shmget(000, 50, IPC_CREAT|0666);
