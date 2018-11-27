@@ -46,10 +46,14 @@ extern int yydebug;
   enum yytokentype
   {
     NUMBER = 258,
-    KEYWORD = 259,
-    TYPE = 260,
-    ID = 261,
-    STRING = 262
+    TYPE = 259,
+    ID = 260,
+    STRING = 261,
+    RETURN = 262,
+    WHILE = 263,
+    PRINT = 264,
+    IF = 265,
+    ELSE = 266
   };
 #endif
 
@@ -64,7 +68,7 @@ union YYSTYPE
   char * sval;
   past	 pAst;
 
-#line 68 "lrparser.tab.h" /* yacc.c:1909  */
+#line 72 "lrparser.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

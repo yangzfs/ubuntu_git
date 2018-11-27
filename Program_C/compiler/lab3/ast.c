@@ -10,7 +10,7 @@ void showAst(past node, int nest)
 
 	int i = 0;
 	for(i = 0; i < nest; i ++)
-		printf(" ");
+		printf("\t");
 	if(strcmp(node->nodeType, "TYPE") == 0)
 		printf("%s %s\n", node->nodeType, node->svalue);
   else if (strcmp(node->nodeType, "ID") == 0)
@@ -19,6 +19,32 @@ void showAst(past node, int nest)
     printf("%s %d\n", node->nodeType, node->ivalue);
   else if (strcmp(node->nodeType, "STRING") == 0)
     printf("%s %s\n", node->nodeType, node->svalue);
+  else if (strcmp(node->nodeType, "+") == 0)
+    printf("SYMBOL %s\n", node->nodeType);
+    else if (strcmp(node->nodeType, "-") == 0)
+      printf("SYMBOL %s\n", node->nodeType);
+      else if (strcmp(node->nodeType, "*") == 0)
+        printf("SYMBOL %s\n", node->nodeType);
+        else if (strcmp(node->nodeType, "/") == 0)
+          printf("SYMBOL %s\n", node->nodeType);
+          else if (strcmp(node->nodeType, "=") == 0)
+            printf("SYMBOL %s\n", node->nodeType);
+            else if (strcmp(node->nodeType, "<") == 0)
+              printf("SYMBOL %s\n", node->nodeType);
+              else if (strcmp(node->nodeType, ">") == 0)
+                printf("SYMBOL %s\n", node->nodeType);
+                else if (strcmp(node->nodeType, "==") == 0)
+                  printf("SYMBOL %s\n", node->nodeType);
+    else if (strcmp(node->nodeType, "RETURN") == 0)
+      printf("%s\n", node->nodeType);
+      else if (strcmp(node->nodeType, "WHILE") == 0)
+        printf("%s\n", node->nodeType);
+        else if (strcmp(node->nodeType, "PRINT") == 0)
+          printf("%s\n", node->nodeType);
+          else if (strcmp(node->nodeType, "IF") == 0)
+            printf("%s\n", node->nodeType);
+            else if (strcmp(node->nodeType, "ELSE") == 0)
+              printf("%s\n", node->nodeType);
 	showAst(node->left, nest+1);
 	showAst(node->right, nest+1);
 }

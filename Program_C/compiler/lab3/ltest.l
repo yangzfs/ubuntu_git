@@ -3,6 +3,8 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include "ast.h"
+/*#include "lrparser.tab.h"*/
 
 void yyerror(char *);
 
@@ -11,23 +13,26 @@ void yyerror(char *);
 ID          [a-zA-Z][a-zA-Z0-9_]*
 NUMBER      [0-9]+
 SYMBOL      [;,(){}]
-OPERATOR    [=+*/-<>]|={2}
-SPACE       [ \n\t]
+OPERATOR    [+\-*/=<>]|={2}
+SPACE       [ \t\n]
 TYPE        int|str|void
 STRING      \"[^"]*\"
-KEYWORD     return|while|print|if|else
 ANNOTATION  \/{2}.*
 %%//Rules
 
-{KEYWORD}       {printf("<KEYWORD, %s>\n", yytext);}
-{TYPE}          {printf("<TYPE, %s>\n", yytext);}
-{ID}            {printf("<ID, %s>\n", yytext);}
-{STRING}				{printf("<STRING, %s>\n", yytext);}
-{NUMBER}        {printf("<NUMBER, %d>\n", atoi(yytext));}
-{SYMBOL}        {printf("<SYMBOL, %s>\n", yytext);}
-{OPERATOR}      {printf("<OPERATOR, %s>\n", yytext);}
+return          {printf("<return ,%s>\n", yytext);}
+while           {printf("<while ,%s>\n", yytext);}
+print           {printf("<print ,%s>\n", yytext);}
+if          		{printf("<if ,%s>\n", yytext);}
+else          	{printf("<else ,%s>\n", yytext);}
+{TYPE}          {printf("<type ,%s>\n", yytext);}
+{ID}            {printf("<id ,%s>\n", yytext);}
+{STRING}				{printf("<string ,%s>\n", yytext);}
+{NUMBER}        {printf("<number ,%s>\n", yytext);}
+{SYMBOL}        {printf("<symbol ,%s>\n", yytext);}
+{OPERATOR}      {printf("<operator ,%s>\n", yytext);}
 {SPACE}         {}
-{ANNOTATION}    {printf("<ANNOTATION, %s>\n", yytext);}
+{ANNOTATION}    {}
 .               {yyerror("invalid character");}
 
 %%  //User functions
@@ -41,6 +46,5 @@ int yywrap(void)
 }
 int main(void)
 {
-  while(yylex());
-  return 0;
+	while(yylex());
 }

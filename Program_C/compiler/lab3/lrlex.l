@@ -12,22 +12,23 @@ void yyerror(char *);
 
 ID          [a-zA-Z][a-zA-Z0-9_]*
 NUMBER      [0-9]+
-SYMBOL      [;,(){}]
-OPERATOR    [=+*/-<>]|={2}
+SYMBOL      [;,(){}]|[=+*/\-<>]|={2}
 SPACE       [ \t\n]
 TYPE        int|str|void
 STRING      \"[^"]*\"
-KEYWORD     return|while|print|if|else
 ANNOTATION  \/{2}.*
 %%//Rules
 
-{KEYWORD}       {yylval.sval = (char *)malloc(sizeof (yytext));strcpy(yylval.sval, yytext);return KEYWORD;}
+return          {yylval.sval = (char *)malloc(sizeof (yytext));strcpy(yylval.sval, yytext);return RETURN;}
+while           {yylval.sval = (char *)malloc(sizeof (yytext));strcpy(yylval.sval, yytext);return WHILE;}
+print           {yylval.sval = (char *)malloc(sizeof (yytext));strcpy(yylval.sval, yytext);return PRINT;}
+if          		{yylval.sval = (char *)malloc(sizeof (yytext));strcpy(yylval.sval, yytext);return IF;}
+else          	{yylval.sval = (char *)malloc(sizeof (yytext));strcpy(yylval.sval, yytext);return ELSE;}
 {TYPE}          {yylval.sval = (char *)malloc(sizeof (yytext));strcpy(yylval.sval, yytext);return TYPE;}
 {ID}            {yylval.sval = (char *)malloc(sizeof (yytext));strcpy(yylval.sval, yytext);return ID;}
 {STRING}				{yylval.sval = (char *)malloc(sizeof (yytext));strcpy(yylval.sval, yytext);return STRING;}
 {NUMBER}        {yylval.ival = atoi(yytext); return NUMBER;}
 {SYMBOL}        {                            return *yytext;}
-{OPERATOR}      {                            return *yytext;}
 {SPACE}         {}
 {ANNOTATION}    {}
 .               {yyerror("invalid character");}
