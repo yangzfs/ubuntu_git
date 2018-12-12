@@ -142,7 +142,7 @@ void producer(void)
 {
   int mutex_id, shm_id;
   struct BufferPool * bufp;
-  char buf[BUFFER_SIZE];
+  char buf[BUFFER_SIZE + 1];
 
   mutex_id = semget(MUTEX_KEY, 1, IPC_CREAT|0666); //创建互斥信号量
     //perror("producer->semget");
@@ -186,7 +186,7 @@ void consumer(void)
 {
   int mutex_id, shm_id;
   struct BufferPool * bufp;
-  char buf[100];
+  char buf[BUFFER_SIZE + 1];
 
   mutex_id = semget(MUTEX_KEY, 1, IPC_CREAT|0666); //创建互斥信号量
   //  perror("consumer->semget");

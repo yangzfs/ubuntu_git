@@ -1315,7 +1315,7 @@ yyreduce:
     {
         case 2:
 #line 34 "lrparser.y" /* yacc.c:1646  */
-    {(yyval.pAst) = new_tree(NULL, (yyvsp[0].pAst), "program");showAst((yyvsp[0].pAst), 0);}
+    {(yyval.pAst) = new_tree(NULL, (yyvsp[0].pAst), "program");}
 #line 1320 "lrparser.tab.c" /* yacc.c:1646  */
     break;
 

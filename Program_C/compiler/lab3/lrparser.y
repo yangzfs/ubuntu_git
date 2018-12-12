@@ -31,7 +31,7 @@ extern void yyerror(char *);
 %%
 
 program
-    : external_declaration     {$$ = new_tree(NULL, $1, "program");showAst($1, 0);}
+    : external_declaration     {$$ = new_tree(NULL, $1, "program");}
     | program external_declaration {$$ = new_tree($1, $2, "program");showAst($2, 0);}
     ;
 
